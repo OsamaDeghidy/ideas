@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { 
-  Gamepad2, 
   Target, 
   Zap, 
   Brain, 
@@ -11,10 +10,8 @@ import {
   Clock,
   Users,
   Sparkles,
-  ArrowRight,
   RotateCcw,
   Play,
-  Pause,
   Volume2,
   VolumeX
 } from "lucide-react";
@@ -31,11 +28,14 @@ interface Game {
 }
 
 interface GameResult {
+  id: string;
   gameId: string;
+  playerName: string;
   score: number;
-  timeSpent: number;
-  completed: boolean;
+  rank: number;
   ideas: string[];
+  duration: number;
+  date: Date;
 }
 
 const games: Game[] = [
@@ -131,9 +131,28 @@ export default function IdeaGames() {
   const [currentConstraint, setCurrentConstraint] = useState('');
   const [userIdeas, setUserIdeas] = useState<string[]>([]);
   const [gameResults, setGameResults] = useState<GameResult[]>([]);
-  const [showResults, setShowResults] = useState(false);
+  const [_showResults, _setShowResults] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [currentPhase, setCurrentPhase] = useState<'intro' | 'playing' | 'results'>('intro');
+
+  const endGame = () => {
+    setIsPlaying(false);
+    setCurrentPhase('results');
+    
+    if (selectedGame) {
+      const newResult: GameResult = {
+        id: `result-${Date.now()}`,
+        gameId: selectedGame.id,
+        playerName: 'أنت',
+        score: userIdeas.length * 10,
+        rank: Math.floor(Math.random() * 5) + 1,
+        ideas: userIdeas,
+        duration: selectedGame.duration * 60 - timeLeft,
+        date: new Date()
+      };
+      setGameResults(prev => [newResult, ...prev]);
+    }
+  };
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
@@ -145,7 +164,7 @@ export default function IdeaGames() {
       endGame();
     }
     return () => clearTimeout(timer);
-  }, [isPlaying, timeLeft]);
+  }, [isPlaying, timeLeft, endGame]);
 
   const startGame = (game: Game) => {
     setSelectedGame(game);
@@ -153,27 +172,11 @@ export default function IdeaGames() {
     setIsPlaying(true);
     setCurrentPhase('playing');
     setUserIdeas([]);
-    setShowResults(false);
+    _setShowResults(false);
     
     // Set random prompt and constraint
     setCurrentPrompt(ideaPrompts[Math.floor(Math.random() * ideaPrompts.length)]);
     setCurrentConstraint(constraints[Math.floor(Math.random() * constraints.length)]);
-  };
-
-  const endGame = () => {
-    setIsPlaying(false);
-    setCurrentPhase('results');
-    
-    if (selectedGame) {
-      const result: GameResult = {
-        gameId: selectedGame.id,
-        score: calculateScore(),
-        timeSpent: selectedGame.duration * 60 - timeLeft,
-        completed: true,
-        ideas: userIdeas
-      };
-      setGameResults(prev => [...prev, result]);
-    }
   };
 
   const calculateScore = () => {
@@ -197,7 +200,7 @@ export default function IdeaGames() {
     setCurrentPrompt('');
     setCurrentConstraint('');
     setUserIdeas([]);
-    setShowResults(false);
+    _setShowResults(false);
     setCurrentPhase('intro');
   };
 
@@ -300,7 +303,7 @@ export default function IdeaGames() {
                   <div key={index} className="bg-white rounded-lg p-4 border border-gray-200">
                     <div className="flex items-center justify-between mb-2">
                       <h3 className="font-semibold text-gray-900">{game?.name}</h3>
-                      <span className="text-sm text-gray-500">{formatTime(result.timeSpent)}</span>
+                      <span className="text-sm text-gray-500">{formatTime(result.duration)}</span>
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="text-lg font-bold text-blue-600">{result.score} نقطة</span>
@@ -461,7 +464,7 @@ export default function IdeaGames() {
               <div className="text-gray-600">عدد الأفكار</div>
             </div>
             <div className="text-center p-4 bg-purple-50 rounded-lg">
-              <div className="text-3xl font-bold text-purple-600 mb-2">{formatTime(result?.timeSpent || 0)}</div>
+              <div className="text-3xl font-bold text-purple-600 mb-2">{formatTime(result?.duration || 0)}</div>
               <div className="text-gray-600">الوقت المستغرق</div>
             </div>
           </div>

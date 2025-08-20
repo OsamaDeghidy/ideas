@@ -36,7 +36,7 @@ export default function LoginPage() {
 
       // Redirect إلى الصفحة الرئيسية
       router.push("/")
-    } catch (error) {
+    } catch (_error) {
       setError("حدث خطأ في تسجيل الدخول")
     } finally {
       setIsLoading(false)

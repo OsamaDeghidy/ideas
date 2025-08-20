@@ -1,49 +1,37 @@
 "use client"
 
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { 
   PenTool,
   Plus,
   ExternalLink,
-  Eye,
   Users,
   Clock,
-  Download,
   Share,
   Settings,
   Trash2,
   Edit,
   Copy,
-  Lock,
-  Unlock,
   Star,
   MessageSquare,
   BarChart3,
   Target,
   Lightbulb,
   Zap,
-  Calendar,
-  Filter,
-  Search,
-  Grid3X3,
   List,
-  Maximize,
-  Minimize,
   RefreshCw,
   Save,
-  Upload,
-  FolderOpen,
-  FileText,
-  Image,
-  Video,
   Link,
   Tag,
   Bookmark,
   Heart,
   ThumbsUp,
   MessageCircle,
-  Bell,
+  FileText,
+  Upload,
+  Search,
+  Grid3X3,
   MoreVertical
 } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -377,8 +365,8 @@ const sampleMiroBoards: MiroBoard[] = [
 
 export default function MiroIntegration() {
   const [boards, setBoards] = useState<MiroBoard[]>(sampleMiroBoards)
-  const [templates, setTemplates] = useState<MiroTemplate[]>(miroTemplates)
-  const [selectedBoard, setSelectedBoard] = useState<MiroBoard | null>(null)
+  const [templates, _setTemplates] = useState<MiroTemplate[]>(miroTemplates)
+  const [_selectedBoard, _setSelectedBoard] = useState<MiroBoard | null>(null)
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid')
   const [filterType, setFilterType] = useState<string>('all')
   const [searchQuery, setSearchQuery] = useState('')

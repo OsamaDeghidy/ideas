@@ -5,7 +5,6 @@ import { motion } from "framer-motion"
 import { 
   Star, 
   CheckCircle, 
-  XCircle, 
   RotateCcw, 
   TrendingUp,
   Users,
@@ -13,12 +12,11 @@ import {
   Lightbulb,
   MessageSquare,
   DollarSign,
-  Clock,
-  Award
+  Clock
 } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Progress } from "@/components/ui/progress"
+// import { Progress } from "@/components/ui/progress"
 
 // أنواع البيانات
 interface EvaluationCriteria {

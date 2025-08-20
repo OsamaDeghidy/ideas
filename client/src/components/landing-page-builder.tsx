@@ -1,27 +1,21 @@
 "use client"
 
 import React, { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 import { 
   Monitor,
   Smartphone,
   Tablet,
   Palette,
   Type,
-  Image,
   Layout,
   Settings,
   Eye,
   Save,
-  Upload,
-  Download,
   Copy,
   Edit,
   Trash2,
   Plus,
-  Minus,
-  Move,
-  RotateCcw,
   Check,
   X,
   Globe,
@@ -1018,11 +1012,11 @@ export default function LandingPageBuilder() {
                     <div>
                       <h4 className="font-medium mb-3">إضافة حقول جديدة:</h4>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                        {availableFields.map((field, index) => {
+                        {availableFields.map((field, _index) => {
                           const FieldIcon = field.icon
                           return (
                             <button
-                              key={index}
+                              key={_index}
                               onClick={() => addFormField(field)}
                               className="flex items-center space-x-3 rtl:space-x-reverse p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors text-left"
                             >

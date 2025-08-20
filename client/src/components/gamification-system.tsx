@@ -7,23 +7,13 @@ import {
   Star,
   Award,
   Crown,
-  Medal,
   Target,
   Zap,
   Gift,
   TrendingUp,
   Users,
-  Calendar,
-  Clock,
   Flame,
   Diamond,
-  Shield,
-  Sword,
-  Gem,
-  Heart,
-  Sparkles,
-  Coffee,
-  Rocket,
   ThumbsUp,
   MessageCircle,
   Lightbulb,
@@ -334,9 +324,9 @@ const leaderboard: LeaderboardEntry[] = [
 export default function GamificationSystem() {
   const [activeTab, setActiveTab] = useState<'overview' | 'achievements' | 'leaderboard' | 'challenges'>('overview')
   const [selectedAchievement, setSelectedAchievement] = useState<Achievement | null>(null)
-  const [userPoints, setUserPoints] = useState(2847)
-  const [userLevel, setUserLevel] = useState(levels[4])
-  const [userStreak, setUserStreak] = useState(28)
+  const [userPoints, _setUserPoints] = useState(2847)
+  const [userLevel, _setUserLevel] = useState(levels[4])
+  const [userStreak, _setUserStreak] = useState(28)
 
   // دالة تحديد لون الندرة
   const getRarityColor = (rarity: string) => {

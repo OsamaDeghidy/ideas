@@ -1,18 +1,14 @@
 "use client"
 
 import React, { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 import { 
   BarChart3,
-  LineChart,
-  PieChart,
   TrendingUp,
   TrendingDown,
-  Calendar,
   Download,
   Filter,
   RefreshCw,
-  Eye,
   Users,
   Lightbulb,
   Award,
@@ -21,20 +17,14 @@ import {
   Zap,
   Star,
   Activity,
-  DollarSign,
-  Percent,
   ArrowUp,
   ArrowDown,
   Minus,
-  FileText,
-  Share,
-  Settings,
   ChevronRight,
   ChevronDown,
-  AlertCircle,
   CheckCircle,
   Info,
-  ExternalLink
+  AlertCircle
 } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -55,7 +45,7 @@ interface AnalyticsMetric {
   description: string
 }
 
-interface ChartData {
+interface _ChartData {
   label: string
   value: number
   color?: string
@@ -287,7 +277,7 @@ export default function AdvancedAnalytics() {
   const [selectedTimeRange, setSelectedTimeRange] = useState("6months")
   const [selectedDepartment, setSelectedDepartment] = useState("all")
   const [expandedMetric, setExpandedMetric] = useState<string | null>(null)
-  const [viewMode, setViewMode] = useState<'overview' | 'detailed' | 'comparison'>('overview')
+  const [_viewMode, _setViewMode] = useState<'overview' | 'detailed' | 'comparison'>('overview')
 
   // دالة تحديد لون التغيير
   const getChangeColor = (changeType: string) => {

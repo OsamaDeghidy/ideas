@@ -46,7 +46,7 @@ export default function RegisterPage() {
 
       // Redirect إلى الصفحة الرئيسية
       router.push("/")
-    } catch (error) {
+    } catch (_error) {
       setError("حدث خطأ في التسجيل")
     } finally {
       setIsLoading(false)

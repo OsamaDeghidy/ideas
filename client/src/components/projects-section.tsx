@@ -3,7 +3,6 @@
 import React, { useState } from "react"
 import { motion } from "framer-motion"
 import { 
-  FolderOpen,
   Calendar,
   Users,
   Clock,
@@ -16,15 +15,12 @@ import {
   Edit,
   Trash2,
   Eye,
-  FileText,
   BarChart3,
   Target,
   DollarSign,
   User,
   Mail,
-  Phone,
-  MapPin,
-  GitBranch
+  Phone
 } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"

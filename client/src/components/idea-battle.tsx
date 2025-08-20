@@ -2,7 +2,7 @@
 
 import React, { useState } from "react"
 import { motion } from "framer-motion"
-import { Sword, Shield, Trophy, Users, TrendingUp, Zap, Clock } from "lucide-react"
+import { Sword, Shield, Trophy, Users, Clock } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Idea } from "@/components/idea-card"
@@ -29,12 +29,6 @@ export default function IdeaBattle({ ideas, onVote, className }: IdeaBattleProps
   const [userVote, setUserVote] = useState<string | null>(null)
   const [battleHistory, setBattleHistory] = useState<Battle[]>([])
 
-  React.useEffect(() => {
-    if (ideas.length >= 2 && !currentBattle) {
-      startNewBattle()
-    }
-  }, [ideas])
-
   const startNewBattle = () => {
     const shuffled = [...ideas].sort(() => 0.5 - Math.random())
     const battle: Battle = {
@@ -51,6 +45,14 @@ export default function IdeaBattle({ ideas, onVote, className }: IdeaBattleProps
     setCurrentBattle(battle)
     setUserVote(null)
   }
+
+  React.useEffect(() => {
+    if (ideas.length >= 2 && !currentBattle) {
+      startNewBattle()
+    }
+  }, [ideas, currentBattle, startNewBattle])
+
+
 
   const handleVote = (votedFor: string) => {
     if (!currentBattle || userVote) return
@@ -72,8 +74,8 @@ export default function IdeaBattle({ ideas, onVote, className }: IdeaBattleProps
   const endBattle = () => {
     if (!currentBattle) return
     
-    const winner = currentBattle.votes1 > currentBattle.votes2 ? currentBattle.idea1 : currentBattle.idea2
-    const loser = currentBattle.votes1 > currentBattle.votes2 ? currentBattle.idea2 : currentBattle.idea1
+    const _winner = currentBattle.votes1 > currentBattle.votes2 ? currentBattle.idea1 : currentBattle.idea2
+    const _loser = currentBattle.votes1 > currentBattle.votes2 ? currentBattle.idea2 : currentBattle.idea1
     
     setBattleHistory(prev => [...prev, { ...currentBattle, isActive: false }])
     setCurrentBattle(null)

@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useEffect } from "react"
 import { motion } from "framer-motion"
-import { Palette, Download, RotateCcw, Sparkles, Brush, Image, Type, Square } from "lucide-react"
+import { Palette, Download, RotateCcw, Sparkles, Brush, Type, Square } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 
@@ -42,7 +42,7 @@ export default function IdeaCanvas({ onSave, className }: IdeaCanvasProps) {
     ctx.lineWidth = brushSize
     ctx.lineCap = 'round'
     ctx.lineJoin = 'round'
-  }, [])
+  }, [color, brushSize])
 
   const startDrawing = (e: React.MouseEvent<HTMLCanvasElement>) => {
     if (currentTool !== 'brush') return

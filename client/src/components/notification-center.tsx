@@ -1,14 +1,12 @@
 "use client"
 
 import React, { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 import { 
   Bell,
-  BellRing,
   Mail,
   MessageSquare,
   Phone,
-  Calendar,
   Clock,
   Check,
   X,
@@ -16,16 +14,10 @@ import {
   Send,
   Users,
   Settings,
-  Filter,
-  Search,
-  Download,
-  Upload,
   Edit,
   Eye,
   Trash2,
-  AlertCircle,
   CheckCircle,
-  Info,
   Star,
   Flag,
   Smartphone,
@@ -33,7 +25,9 @@ import {
   Zap,
   Target,
   BarChart3,
-  Plus
+  Plus,
+  AlertCircle,
+  Info
 } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -260,8 +254,8 @@ const availableRecipients: Recipient[] = [
 
 export default function NotificationCenter() {
   const [activeTab, setActiveTab] = useState<'notifications' | 'templates' | 'compose' | 'analytics'>('notifications')
-  const [selectedNotification, setSelectedNotification] = useState<Notification | null>(null)
-  const [showCompose, setShowCompose] = useState(false)
+  const [_selectedNotification, setSelectedNotification] = useState<Notification | null>(null)
+  const [_showCompose, setShowCompose] = useState(false)
   const [filter, setFilter] = useState("all")
 
   // حالات إنشاء إشعار جديد

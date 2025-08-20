@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState, useRef, useEffect } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 import { 
   Video,
   VideoOff,
@@ -22,8 +22,6 @@ import {
   MessageSquare,
   Hand,
   MoreVertical,
-  Grid3X3,
-  Maximize,
   Volume2,
   VolumeOff,
   Share,
@@ -332,7 +330,7 @@ const sampleMeetings: Meeting[] = [
 export default function VirtualMeetings() {
   const [selectedMeeting, setSelectedMeeting] = useState<Meeting | null>(null)
   const [inMeeting, setInMeeting] = useState(false)
-  const [showGames, setShowGames] = useState(false)
+  const [_showGames, setShowGames] = useState(false)
   const [activeGame, setActiveGame] = useState<BrainstormingGame | null>(null)
   
   // حالات التحكم في الاجتماع
@@ -344,13 +342,13 @@ export default function VirtualMeetings() {
   const [showChat, setShowChat] = useState(false)
   const [showMiroPanel, setShowMiroPanel] = useState(false)
   const [showAnalytics, setShowAnalytics] = useState(false)
-  const [showSettings, setShowSettings] = useState(false)
-  const [waitingRoom, setWaitingRoom] = useState(false)
-  const [breakoutRooms, setBreakoutRooms] = useState(false)
+  const [_showSettings, _setShowSettings] = useState(false)
+  const [_waitingRoom, _setWaitingRoom] = useState(false)
+  const [_breakoutRooms, _setBreakoutRooms] = useState(false)
   
-  const videoRef = useRef<HTMLVideoElement>(null)
+  const _videoRef = useRef<HTMLVideoElement>(null)
   const [meetingTime, setMeetingTime] = useState(0)
-  const [chatMessages, setChatMessages] = useState<Array<{
+  const [chatMessages, _setChatMessages] = useState<Array<{
     id: string
     sender: string
     message: string

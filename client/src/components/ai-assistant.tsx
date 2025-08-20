@@ -4,10 +4,7 @@ import React, { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { 
   Bot,
-  Sparkles,
-  Brain,
   Zap,
-  Target,
   TrendingUp,
   Lightbulb,
   MessageCircle,
@@ -16,7 +13,6 @@ import {
   MicOff,
   Volume2,
   VolumeOff,
-  Star,
   ThumbsUp,
   ThumbsDown,
   Copy,
@@ -24,12 +20,8 @@ import {
   Bookmark,
   RefreshCw,
   Wand2,
-  Search,
-  Filter,
   ArrowRight,
   CheckCircle,
-  AlertCircle,
-  Info,
   X
 } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -134,7 +126,7 @@ export default function AIAssistant() {
   const [inputText, setInputText] = useState("")
   const [isTyping, setIsTyping] = useState(false)
   const [isListening, setIsListening] = useState(false)
-  const [showSuggestions, setShowSuggestions] = useState(true)
+  const [_showSuggestions, _setShowSuggestions] = useState(true)
   const [selectedSuggestion, setSelectedSuggestion] = useState<AISuggestion | null>(null)
 
   // دالة إرسال رسالة

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { 
   Puzzle, 
   Target, 
@@ -10,19 +10,14 @@ import {
   Trophy, 
   Clock,
   Users,
-  Sparkles,
-  ArrowRight,
   RotateCcw,
   Play,
-  Pause,
   Volume2,
   VolumeX,
   Eye,
   EyeOff,
-  Timer,
   CheckCircle,
-  XCircle,
-  AlertCircle
+  XCircle
 } from "lucide-react";
 
 interface AdvancedGame {
@@ -170,7 +165,7 @@ export default function AdvancedGames() {
   });
   const [currentPhase, setCurrentPhase] = useState<'intro' | 'playing' | 'results'>('intro');
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [userAnswers, setUserAnswers] = useState<number[]>([]);
+  const [_userAnswers, setUserAnswers] = useState<number[]>([]);
   const [patternAnswer, setPatternAnswer] = useState('');
   const [speedIdeas, setSpeedIdeas] = useState<string[]>([]);
   const [memoryItems, setMemoryItems] = useState<string[]>([]);

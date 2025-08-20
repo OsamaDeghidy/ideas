@@ -205,7 +205,7 @@ export default function HomePage() {
     console.log("Share idea:", ideaId)
   }
 
-  const handleSpinResult = (result: { idea: { id: string; title: string; category: string }; challenge: string }) => {
+  const _handleSpinResult = (result: { idea: { id: string; title: string; category: string }; challenge: string }) => {
     console.log("Spin result:", result)
   }
 

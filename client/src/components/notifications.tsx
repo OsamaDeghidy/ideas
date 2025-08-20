@@ -137,7 +137,7 @@ export default function Notifications() {
           )}
         </Button>
 
-        <AnimatePresence>
+        {/* <AnimatePresence> */}
           {isOpen && (
             <motion.div
               initial={{ opacity: 0, y: -10, scale: 0.95 }}
@@ -240,7 +240,7 @@ export default function Notifications() {
               </Card>
             </motion.div>
           )}
-        </AnimatePresence>
+        {/* </AnimatePresence> */}
       </div>
     </div>
   )

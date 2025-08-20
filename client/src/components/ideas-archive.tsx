@@ -5,13 +5,9 @@ import { motion, AnimatePresence } from "framer-motion"
 import { 
   Archive,
   Search,
-  Filter,
   Tag,
-  Calendar,
-  User,
   Lightbulb,
   RefreshCw,
-  Download,
   Share2,
   Heart,
   MessageCircle,
@@ -21,7 +17,6 @@ import {
   BookOpen,
   Shuffle,
   Play,
-  FileText,
   Bookmark,
   Star
 } from "lucide-react"

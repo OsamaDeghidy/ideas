@@ -1,55 +1,31 @@
 "use client"
 
 import React, { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 import { 
   BarChart3,
   TrendingUp,
   Users,
   Lightbulb,
   Calendar,
-  Award,
   Settings,
-  Shield,
   Database,
-  FileText,
-  Mail,
-  Phone,
   Globe,
   Activity,
-  Clock,
   CheckCircle,
-  AlertCircle,
-  XCircle,
   Plus,
   Edit,
-  Trash2,
   Eye,
   Download,
-  Upload,
   RefreshCw,
   Search,
   Filter,
-  MoreVertical,
   Building,
   Star,
-  Target,
   Zap,
   Briefcase,
-  UserCheck,
-  MessageSquare,
   Video,
-  Archive,
-  Bell,
-  PieChart,
-  LineChart,
-  Map,
-  Layers,
-  Lock,
-  Unlock,
-  Save,
-  Share,
-  Copy
+  Save
 } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -274,8 +250,8 @@ const adminUsers: AdminUser[] = [
 
 export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState<'overview' | 'users' | 'companies' | 'system' | 'analytics' | 'settings'>('overview')
-  const [selectedCompany, setSelectedCompany] = useState<Company | null>(null)
-  const [showUserDetails, setShowUserDetails] = useState(false)
+  const [_selectedCompany, _setSelectedCompany] = useState<Company | null>(null)
+  const [_showUserDetails, _setShowUserDetails] = useState(false)
 
   // دالة تحديد لون الحالة
   const getStatusColor = (status: string) => {
@@ -340,7 +316,7 @@ export default function AdminDashboard() {
           return (
             <button
               key={tab.id}
-              onClick={() => setActiveTab(tab.id as any)}
+              onClick={() => setActiveTab(tab.id as 'overview' | 'users' | 'companies' | 'system' | 'analytics' | 'settings')}
               className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-all flex items-center justify-center space-x-2 rtl:space-x-reverse ${
                 activeTab === tab.id 
                   ? 'bg-indigo-500 text-white shadow-sm' 

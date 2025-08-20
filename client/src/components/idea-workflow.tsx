@@ -10,11 +10,8 @@ import {
   Archive,
   TrendingUp,
   Users,
-  FolderOpen,
   Star,
   MessageSquare,
-  Calendar,
-  Award,
   AlertTriangle,
   Eye,
   ThumbsUp,
@@ -116,7 +113,7 @@ export default function IdeaWorkflow() {
   )
 
   // دالة تحديد لون الحالة
-  const getStatusInfo = (status: string, score: number) => {
+  const getStatusInfo = (status: string, _score: number) => {
     switch (status) {
       case 'approved':
         return { 

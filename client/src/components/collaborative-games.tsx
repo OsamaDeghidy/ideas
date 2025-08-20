@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { 
   Users, 
   Target, 
@@ -11,23 +11,17 @@ import {
   Clock,
   MessageCircle,
   Send,
-  UserPlus,
-  Sparkles,
-  ArrowRight,
   RotateCcw,
   Play,
-  Pause,
   Volume2,
   VolumeX,
   Eye,
   EyeOff,
-  Timer,
   CheckCircle,
   XCircle,
-  AlertCircle,
   Heart,
   ThumbsUp,
-  Share2
+  Sparkles
 } from "lucide-react";
 
 interface TeamMember {
@@ -150,17 +144,24 @@ const sampleTeamMembers: TeamMember[] = [
 ];
 
 export default function CollaborativeGames() {
-  const [selectedGame, setSelectedGame] = useState<CollaborativeGame | null>(null);
+  const [_selectedGame, setSelectedGame] = useState<CollaborativeGame | null>(null);
   const [currentSession, setCurrentSession] = useState<GameSession | null>(null);
   const [currentPhase, setCurrentPhase] = useState<'lobby' | 'waiting' | 'playing' | 'results'>('lobby');
-  const [teamMembers, setTeamMembers] = useState<TeamMember[]>(sampleTeamMembers);
+  const [teamMembers, _setTeamMembers] = useState<TeamMember[]>(sampleTeamMembers);
   const [newIdea, setNewIdea] = useState('');
   const [sharedIdeas, setSharedIdeas] = useState<string[]>([]);
-  const [currentTurn, setCurrentTurn] = useState(0);
+  const [_currentTurn, setCurrentTurn] = useState(0);
   const [timeLeft, setTimeLeft] = useState(0);
   const [chatMessages, setChatMessages] = useState<Array<{id: string, user: string, message: string, timestamp: Date}>>([]);
   const [newMessage, setNewMessage] = useState('');
   const [isMuted, setIsMuted] = useState(false);
+
+  const endGame = () => {
+    if (currentSession) {
+      setCurrentSession(prev => prev ? { ...prev, status: 'completed', endTime: new Date() } : null);
+      setCurrentPhase('results');
+    }
+  };
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
@@ -172,7 +173,7 @@ export default function CollaborativeGames() {
       endGame();
     }
     return () => clearTimeout(timer);
-  }, [currentPhase, timeLeft]);
+  }, [currentPhase, timeLeft, endGame]);
 
   const startGame = (game: CollaborativeGame) => {
     setSelectedGame(game);
@@ -196,13 +197,6 @@ export default function CollaborativeGames() {
     if (currentSession) {
       setCurrentSession(prev => prev ? { ...prev, status: 'playing' } : null);
       setCurrentPhase('playing');
-    }
-  };
-
-  const endGame = () => {
-    if (currentSession) {
-      setCurrentSession(prev => prev ? { ...prev, status: 'completed', endTime: new Date() } : null);
-      setCurrentPhase('results');
     }
   };
 

@@ -2,7 +2,7 @@
 
 import React, { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { GalleryVertical, Heart, Share2, Download, Eye, Sparkles, Trophy } from "lucide-react"
+import { GalleryVertical, Heart, Share2, Download, Eye, Sparkles } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 
@@ -65,7 +65,7 @@ export default function IdeaGallery({
   onDownload, 
   className 
 }: IdeaGalleryProps) {
-  const [selectedItem, setSelectedItem] = useState<GalleryItem | null>(null)
+  const [_selectedItem, _setSelectedItem] = useState<GalleryItem | null>(null)
   const [filter, setFilter] = useState("all")
 
   const filteredItems = filter === "all" 
@@ -117,6 +117,7 @@ export default function IdeaGallery({
                       src={item.image}
                       alt={item.title}
                       className="w-full h-48 object-cover"
+                      loading="lazy"
                     />
                     <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
                       <div className="opacity-0 group-hover:opacity-100 transition-all duration-300 flex space-x-2 rtl:space-x-reverse">
